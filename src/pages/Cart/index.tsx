@@ -3,6 +3,8 @@ import {
   MdAddCircleOutline,
   MdRemoveCircleOutline,
 } from "react-icons/md";
+import { useHistory } from "react-router";
+import { toast } from "react-toastify";
 
 import { useCart } from "../../hooks/useCart";
 import { formatPrice } from "../../util/format";
@@ -17,6 +19,7 @@ interface Product {
 }
 
 const Cart = (): JSX.Element => {
+  const history = useHistory();
   const { cart, removeProduct, updateProductAmount } = useCart();
 
   const cartFormatted = cart.map((product) => ({
@@ -57,6 +60,11 @@ const Cart = (): JSX.Element => {
 
   function handleRemoveProduct(productId: number) {
     removeProduct(productId);
+  }
+
+  function finishOrder() {
+    toast('Seu pedido foi finalizado, obrigado!');
+    history.push('/');
   }
 
   return (
@@ -124,7 +132,12 @@ const Cart = (): JSX.Element => {
       </ProductTable>
 
       <footer>
-        <button type="button">Finalizar pedido</button>
+        <button
+          onClick={finishOrder} 
+          type="button"
+        >
+          Finalizar pedido
+        </button>
 
         <Total>
           <span>TOTAL</span>
