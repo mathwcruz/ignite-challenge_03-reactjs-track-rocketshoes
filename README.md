@@ -37,13 +37,13 @@
 <br>
 
 ## 💻 Application installation
-- `git clone https://github.com/mathwcruz/ignite-desafio_03-trilha-reactjs.git` to clone the repository
+- `git clone https://github.com/mathwcruz/ignite-desafio_03-trilha-reactjs-rocketshoes.git` to clone the repository
 
 <br>
 
 # Run application
 To run the application on the web, follow the instructions from your terminal:
-- `cd ignite-desafio_03-trilha-reactjs` and `code .`
+- `cd ignite-desafio_03-trilha-reactjs-rocketshoes` and `code .`
 - run `yarn` to install the dependencies of the project
 - run `yarn server` to run the server on `localhost:3333`
 - After that, run `yarn start` to run the application, will open at the address `localhost:3000`
