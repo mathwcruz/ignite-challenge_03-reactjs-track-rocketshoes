@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 import { useCart } from "../../hooks/useCart";
 import { formatPrice } from "../../util/format";
+
 import { Container, ProductTable, Total } from "./styles";
 
 interface Product {
@@ -24,13 +25,13 @@ const Cart = (): JSX.Element => {
 
   const cartFormatted = cart.map((product) => ({
     ...product,
-    priceFormatted: formatPrice(product.price),
-    subTotal: formatPrice(product.price * product.amount),
+    priceFormatted: formatPrice(product.price), //formatando o preço de cada produto no carrinho
+    subTotal: formatPrice(product.price * product.amount), //calculando o subtotal desse produto no carrinho
   }));
 
   const total = formatPrice(
     cart.reduce((sumTotal, product) => {
-      sumTotal += product.price * product.amount;
+      sumTotal += product.price * product.amount; //calculando o valor total de todos os produtos no carrinho
 
       return sumTotal;
     }, 0)
@@ -64,6 +65,7 @@ const Cart = (): JSX.Element => {
 
   function finishOrder() {
     toast('Seu pedido foi finalizado, obrigado!');
+    
     history.push('/');
   }
 

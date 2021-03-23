@@ -23,44 +23,61 @@ const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export function CartProvider({ children }: CartProviderProps): JSX.Element {
   const [cart, setCart] = useState<Product[]>(() => {
+    //setando no carrinho os itens que estão salvos no localStorage
     const storagedCart = localStorage.getItem("@RocketShoes:cart");
 
     if (storagedCart) {
       return JSON.parse(storagedCart);
     }
 
-    return [];
+    return []; //se nao tiver nenhum dado, retorna um array vazio
   });
 
   const addProduct = async (productId: number) => {
     try {
+      //verificando se o produto que foi adicionado na aba Home já consta no carrinho
       const productAlredyInCart = cart.find(
         (product) => product.id === productId
       );
 
+      //se não constar ...
       if (!productAlredyInCart) {
+        //pegando os dados do produto selecionado para adicionar ao carrinho
         const { data: product } = await api.get<Product>(
           `products/${productId}`
         );
 
+        //pegando o quanto em estoque tem desse produto
         const { data: stock } = await api.get<Stock>(`stock/${productId}`);
 
+        //se tiver estoque desse produto, irá setar 1 unidade do produto no carrinho
         if (stock.amount > 0) {
-          setCart([...cart, { ...product, amount: 1 }]);
+          setCart([
+            ...cart, 
+            { ...product, amount: 1 }
+          ]);
 
+          //salvando o novo array de itens no carrinho no localStorage
           localStorage.setItem(
             "@RocketShoes:cart",
-            JSON.stringify([...cart, { ...product, amount: 1 }])
-          );
+            JSON.stringify([
+              ...cart, 
+              { ...product, amount: 1 }
+            ]));
+
           toast("Adicionado");
           return;
         }
       }
 
+      //se esse produto ja esiver no carrinho ...
       if (productAlredyInCart) {
         const { data: stock } = await api.get<Stock>(`stock/${productId}`);
 
+        //se o estoque desse produto for maior do que a quantidade desse produto que já está no carrinho
         if (stock.amount > productAlredyInCart.amount) {
+
+          //buscando o produto no carrinho e adicionado mais uma unidade dele
           const updatedCart = cart.map((cartItem) =>
             cartItem.id === productId
               ? {
@@ -72,6 +89,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
           setCart(updatedCart);
 
+          //salvando o novo array de produtos no carrinho no localStorage
           localStorage.setItem(
             "@RocketShoes:cart",
             JSON.stringify(updatedCart)
@@ -98,6 +116,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       //se esse produto não existir, mostra um erro
       if (!productExists) {
         toast.error("Erro na remoção do produto");
+
         return;
       }
 
@@ -106,16 +125,14 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
       setCart(updatedCart);
 
+      //salvando o novo array com o item removido no localStorage
       localStorage.setItem("@RocketShoes:cart", JSON.stringify(updatedCart));
     } catch {
       toast.error("Erro na remoção do produto");
     }
   };
 
-  const updateProductAmount = async ({
-    productId,
-    amount,
-  }: UpdateProductAmount) => {
+  const updateProductAmount = async ({ productId, amount }: UpdateProductAmount) => {
     try {
       if (amount < 1) {
         toast.error("Erro na alteração de quantidade do produto");
@@ -161,6 +178,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
       setCart(updatedCart);
 
+      //salvando no localStorage o aray de produtos no carrinho atualizado com a quantia disponível
       localStorage.setItem("@RocketShoes:cart", JSON.stringify(updatedCart));
     } catch {
       toast.error("Erro na alteração de quantidade do produto");

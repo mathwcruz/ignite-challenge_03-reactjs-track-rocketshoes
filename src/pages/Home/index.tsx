@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { MdAddShoppingCart } from "react-icons/md";
+import { formatPrice } from "../../util/format";
+
+import { useCart } from "../../hooks/useCart";
+
+import { api } from "../../services/api";
 
 import { ProductList } from "./styles";
-import { api } from "../../services/api";
-import { formatPrice } from "../../util/format";
-import { useCart } from "../../hooks/useCart";
 
 interface Product {
   id: number;
@@ -37,8 +39,8 @@ const Home = (): JSX.Element => {
 
       const productPriceFormatted = data.map((product: Product) => {
         return {
-          ...product,
-          price: formatPrice(product.price),
+          ...product, //retornando todos os atributos do produto
+          price: formatPrice(product.price), //mas com o preço formatado
         };
       });
       setProducts(productPriceFormatted);
