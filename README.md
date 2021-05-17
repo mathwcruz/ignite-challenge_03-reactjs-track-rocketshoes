@@ -6,6 +6,8 @@
 
 ## <p><h2 align="center">Shoes e-commerce application developed in Ignite's third challenge delivered by [Rocketseat](https://app.rocketseat.com.br/dashboard)</h2> </p>
 
+## <p align="center"> <img src="https://github.com/mathwcruz/next-auth/blob/main/.github/Ignite.png" width="1400px"/> </p>
+
 <h3>In addition to the proposed challenge, I add a message after the user request to finalize the order</h3>
 
 <p align="center">
