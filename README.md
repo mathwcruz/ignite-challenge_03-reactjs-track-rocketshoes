@@ -2,11 +2,11 @@
   <img src="./src/assets/images/logo.svg" alt="Logo do RocketShoes" width="350">
 </h1>
 
-## **<h2 align="center">Front end application  💻</h2>**
+<h2 align="center">Front end application  💻</h2>
 
-## <p><h2 align="center">Shoes e-commerce application</h2> </p>
+<h2 align="center">Shoes e-commerce application</h2>
 
-## <p align="center"> <img src="https://github.com/mathwcruz/next-auth/blob/main/.github/Ignite.png" width="1400px"/> </p>
+<p align="center"> <img src="https://github.com/mathwcruz/next-auth/blob/main/.github/Ignite.png" width="1400px"/> </p>
 
 <h3>In addition to the proposed challenge, I add a message after the user request to finalize the order</h3>
 
@@ -78,4 +78,4 @@ Desenvolvido por Matheus da Cruz 😊
 [![Gmail Badge](https://img.shields.io/badge/-matheuswachcruz@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:matheuswachcruz@gmail.com)](mailto:matheuswachcruz@gmail.com)
 <br>
 
-### <p> <h2 align="center">Another application by Matheus da Cruz 👨‍💻 </h2> </p>
+<h2 align="center">Another application developed by Matheus da Cruz 👨‍💻 </h2>
